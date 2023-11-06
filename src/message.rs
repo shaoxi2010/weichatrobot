@@ -42,9 +42,9 @@ pub struct Text {
 
 impl Text {
     pub fn new(
-        content: &str,
-        mentioned_list: &[&str],
-        mentioned_mobile_list: &[&str],
+        content: impl ToString,
+        mentioned_list: &[impl ToString],
+        mentioned_mobile_list: &[impl ToString],
     ) -> Result<Self> {
         Ok(Self {
             msgtype: "text",

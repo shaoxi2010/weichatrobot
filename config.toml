@@ -1,0 +1,15 @@
+[token]
+# 机器人 Token
+url = ""
+# 试运行
+dry_run = true
+
+[message]
+# 随机发送的文字内容
+text = "xuexi.txt"
+# 需要@提醒的人，"@all"提醒所有人,
+mentioned_list = []
+# 需要@提醒的手机号列表
+mentioned_mobile_list = []
+# 随机发送的图片
+picture = "img"

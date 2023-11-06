@@ -13,5 +13,8 @@ base64 = "0.21.5"
 md5 = "0.7.0"
 
 [[example]]
-name = "webhook"
+name = "xuexirobot"
 
+[dev-dependencies]
+toml = "0.8.6"
+rand = "0.8.5"
