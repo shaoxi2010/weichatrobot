@@ -1,4 +1,4 @@
-use anyhow::{Ok, Result};
+use anyhow::{Ok, Result, Context};
 use base64::{engine::general_purpose, Engine};
 use serde::Serialize;
 use std::fs::File;
@@ -16,8 +16,10 @@ impl Image {
         let mut image = HashMap::new();
         let mut data = Vec::new();
 
-        let mut file = File::open(img)?;
-        file.read_to_end(&mut data)?;
+        let mut file = File::open(img)
+			.context("Can not open image")?;
+        file.read_to_end(&mut data)
+			.context("Can not read image")?;
         image.insert("base64", general_purpose::STANDARD.encode(&data));
         image.insert("md5", format!("{:x}", md5::compute(data)));
         Ok(Self {
@@ -51,7 +53,10 @@ impl Text {
             text: TextData {
                 content: content.to_string(),
                 mentioned_list: mentioned_list.into_iter().map(|x| x.to_string()).collect(),
-                mentioned_mobile_list: mentioned_mobile_list.into_iter().map(|x| x.to_string()).collect(),
+                mentioned_mobile_list: mentioned_mobile_list
+                    .into_iter()
+                    .map(|x| x.to_string())
+                    .collect(),
             },
         })
     }
